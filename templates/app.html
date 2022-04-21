@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>Flake App</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="../static/app.css" />
+	</head>
+	<body class="m-3">
+		<div class="container p-3 custom-form">
+			<form action="/weather" method="POST">
+				<!-- query -->
+				<div class="mb-3">
+					<div class="row">
+						<div class="col-2">
+							<label for="query">CityName</label>
+						</div>
+						<div class="col-10">
+							<input
+								class="form-control"
+								name="query"
+								type="text"
+								placeholder="{{ region }}"
+								aria-label="query"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- submit button -->
+				<div class="mb-3">
+					<button type="submit" class="btn btn-outline-success">
+						Generate
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="main" class="container p-5 custom-form">
+			<div>{{ region | safe }}</div>
+			<img src="{{ weather.iconURL }}" alt="" />
+			<div>DayHour: {{ weather.dayhour | safe }}</div>
+			<div>Temp (c): {{ weather.temp.c | safe }}</div>
+			<div>Temp (f): {{ weather.temp.f | safe }}</div>
+			<div>humidity: {{ weather.humidity | safe }}</div>
+			<div>wind (km): {{ weather.wind.km | safe }}</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	// MaskFontSize
+	var slider_maskfontsize = document.getElementById("maskfontsizeIn");
+	var output_maskfontsize = document.getElementById("maskfontsizeOut");
+	output_maskfontsize.innerHTML =
+		"MaskFontSize: " + slider_maskfontsize.value;
+
+	slider_maskfontsize.oninput = function () {
+		output_maskfontsize.innerHTML = "MaskFontSize: " + this.value;
+	};
+
+	// WordCount
+	var slider_wordcount = document.getElementById("wordcountIn");
+	var output_wordcount = document.getElementById("wordcountOut");
+	output_wordcount.innerHTML = "WordCount: " + slider_wordcount.value;
+
+	slider_wordcount.oninput = function () {
+		output_wordcount.innerHTML = "WordCount: " + this.value;
+	};
+
+	// Width
+	var slider_width = document.getElementById("widthIn");
+	var output_width = document.getElementById("widthOut");
+	output_width.innerHTML = "Width: " + slider_width.value;
+
+	slider_width.oninput = function () {
+		output_width.innerHTML = "Width: " + this.value;
+	};
+
+	// Height
+	var slider_height = document.getElementById("heightIn");
+	var output_height = document.getElementById("heightOut");
+	output_height.innerHTML = "Height: " + slider_height.value;
+
+	slider_height.oninput = function () {
+		output_height.innerHTML = "Height: " + this.value;
+	};
+</script>
